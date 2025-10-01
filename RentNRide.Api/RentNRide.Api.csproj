@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Dockerfile" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RentNRide.Data.Postgre\RentNRide.Data.Postgre.csproj" />
+    <ProjectReference Include="..\RentNRide.Listener.MotorcycleConsumer\RentNRide.Listener.MotorcycleConsumer.csproj" />
+    <ProjectReference Include="..\RentNRide.Providers.RabbitMqPublisher\RentNRide.Providers.RabbitMqPublisher.csproj" />
+    <ProjectReference Include="..\RentNRide.Service.Driver\RentNRide.Service.Driver.csproj" />
+    <ProjectReference Include="..\RentNRide.Service.Motorcycle\RentNRide.Service.Motorcycle.csproj" />
+    <ProjectReference Include="..\RentNRide.Service.Rental\RentNRide.Service.Rental.csproj" />
+    <ProjectReference Include="..\RentNRide.Service.Plan\RentNRide.Service.Plan.csproj" />
+  </ItemGroup>
+
+</Project>
