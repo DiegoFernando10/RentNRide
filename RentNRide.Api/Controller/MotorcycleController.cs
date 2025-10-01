@@ -26,7 +26,7 @@ public class MotorcycleController : ControllerBase
     /// </summary>
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<MotorcycleModel>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<MotorcycleModel>> GetAll([FromQuery] string plate)
+    public async Task<IEnumerable<MotorcycleModel>> GetAll([FromQuery(Name = "placa")] string? plate = null)
         => await motoService.GetAllAsync(plate);
 
     /// <summary>
@@ -71,6 +71,6 @@ public class MotorcycleController : ControllerBase
     /// </summary>
     [HttpGet("registered")]
     [ProducesResponseType(typeof(IEnumerable<MotorcycleModel>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<MotorcycleModel>> GetRegistereds([FromQuery] string plate)
+    public async Task<IEnumerable<MotorcycleModel>> GetRegistereds([FromQuery(Name = "placa")] string? plate = null)
         => await registeredService.GetAllAsync(plate);
 }
