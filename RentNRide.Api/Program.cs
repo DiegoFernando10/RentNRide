@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.OpenApi.Models;
 using Minio;
 using Newtonsoft.Json.Serialization;
 using RentNRide.Common.Domain.Exceptions;
@@ -13,6 +14,7 @@ using RentNRide.Service.Motorcycle;
 using RentNRide.Service.Plan;
 using RentNRide.Service.Rental;
 using System.Net;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,6 +71,23 @@ builder.Services.AddApiVersioning(options =>
     options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
 });
 
+// ===== Swagger =====
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    if (File.Exists(xmlPath))
+        options.IncludeXmlComments(xmlPath);
+
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "RentNRide API",
+        Version = "v1",
+        Description = "Documentação automática das APIs RentNRide"
+    });
+});
+
 var app = builder.Build();
 
 app.UseCors("Default");
@@ -118,11 +137,16 @@ app.UseExceptionHandler(builder =>
     });
 });
 
-
 app.UseHttpsRedirection();
-
 app.UseRouting();
 
 app.MapControllers();
+
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "RentNRide API v1");
+    options.RoutePrefix = "swagger";
+});
 
 app.Run();
