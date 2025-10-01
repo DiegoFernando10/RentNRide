@@ -33,10 +33,10 @@ CREATE TABLE IF NOT EXISTS "Rental" (
     "StartDate" TIMESTAMP NOT NULL,
     "ExpectedEndDate" TIMESTAMP NOT NULL,
     "ActualEndDate" TIMESTAMP,
-    "BaseValue" NUMERIC(7,2) NOT NULL,
+    "BaseValue" NUMERIC(9,2) NOT NULL,
     "Penalty" NUMERIC(5,2),
     "Additional" NUMERIC(5,2),
-    "TotalCost" NUMERIC(7,2) NOT NULL,
+    "TotalCost" NUMERIC(9,2) NOT NULL,
 
     "MotorcycleId" VARCHAR(6) NOT NULL,
     "DriverId" VARCHAR(6) NOT NULL,
