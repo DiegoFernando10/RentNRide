@@ -45,6 +45,6 @@ public class RentalController : ControllerBase
     [HttpPut("{id}/devolucao")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task UpdateCnh(string id, [FromBody] DateFinishModel model)
+    public async Task<RentalResultModel> UpdateCnh(string id, [FromBody] DateFinishModel model)
         => await rentalService.FinishRentalAsync(id, model.FinishDate);
 }
