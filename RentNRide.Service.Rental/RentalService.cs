@@ -5,7 +5,6 @@ using RentNRide.Common.Domain.Models.Rent;
 using RentNRide.Common.Domain.Services;
 using RentNRide.Common.Id;
 using RentNRide.Data.Entities;
-using RentNRide.Data.Entities.Rent;
 
 namespace RentNRide.Service.Rental;
 
@@ -18,11 +17,11 @@ public class RentalService : IRentalService
         this.unitOfWork = unitOfWork;
     }
 
-    public async Task<IEnumerable<RentalResultModel>> GetAll()
+    public async Task<RentalResultModel> GetById(string rentalId)
     {
         return await unitOfWork
             .RentalRepository
-            .AsQueryable()
+            .Where(w => w.RentalId == rentalId)
             .Include(i => i.Plan)
             .Select(s => new RentalResultModel
             {
@@ -36,10 +35,10 @@ public class RentalService : IRentalService
                 StartDate = s.StartDate,
                 Description = s.Plan.Description,
                 PlanId = s.PlanId
-            }).ToListAsync();
+            }).FirstOrDefaultAsync() ?? throw new NotFoundException("Locação não encontrada");
     }
 
-    public async Task<RentalResultModel> CreateRentalAsync(RentModel model)
+    public async Task<RentalResultModel> CreateAsync(RentModel model)
     {
         #region Validations
 

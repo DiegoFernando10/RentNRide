@@ -25,20 +25,24 @@ public class RentNRideDbContext : DbContext
     {
         // Motorcycle
         modelBuilder.Entity<Motorcycle>()
+            .ToTable("Motorcycle")
             .HasIndex(m => m.Plate)
             .IsUnique();
 
         // Driver
         modelBuilder.Entity<Driver>()
+            .ToTable("Driver")
             .HasIndex(d => d.Cnpj)
             .IsUnique();
 
         modelBuilder.Entity<Driver>()
+            .ToTable("Driver")
             .HasIndex(d => d.LicenseNumber)
             .IsUnique();
 
         // Rental
         modelBuilder.Entity<Rental>()
+            .ToTable("Rental")
             .HasOne(r => r.Motorcycle)
             .WithMany(m => m.Rentals)
             .HasForeignKey(r => r.MotorcycleId);
@@ -50,6 +54,7 @@ public class RentNRideDbContext : DbContext
 
         // MotorcycleEvent
         modelBuilder.Entity<MotorcycleEvent>()
+            .ToTable("MotorcycleEvent")
             .HasOne(e => e.Motorcycle)
             .WithMany()
             .HasForeignKey(e => e.MotorcycleId);

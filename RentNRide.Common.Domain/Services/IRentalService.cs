@@ -4,8 +4,8 @@ namespace RentNRide.Common.Domain.Services;
 
 public interface IRentalService
 {
-    Task<IEnumerable<RentalResultModel>> GetAll();
-    Task<RentalResultModel> CreateRentalAsync(RentModel model);
+    Task<RentalResultModel> GetById(string rentalId);
+    Task<RentalResultModel> CreateAsync(RentModel model);
     Task<RentalResultModel> FinishRentalAsync(string rentalId, DateTime finishDate);
 
 }

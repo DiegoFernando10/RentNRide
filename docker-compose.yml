@@ -23,9 +23,8 @@ services:
       - MINIO_USER=${MINIO_USER}
       - MINIO_PASSWORD=${MINIO_PASSWORD}
     depends_on:
-      - postgres
+      - database-updater
       - rabbitmq
-      - db_migration
       - minio
 
   database-updater:
@@ -45,33 +44,18 @@ services:
       - postgres
 
   postgres:
-    image: postgres:15
-    container_name: postgres_db
-    restart: always
-    environment:
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-  
-  db_migration:
-    build:
-      context: ./RentNRide.Deployment.Database
-      dockerfile: Dockerfile
-    image: rentnride-db-migration:1.0
-    container_name: rentnride-db-migration
-    environment:
-      - POSTGRES_HOST=${POSTGRES_HOST}
-      - POSTGRES_PORT=${POSTGRES_PORT}
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-    depends_on:
-      - postgres
-
+      image: postgres:15
+      container_name: postgres_db
+      restart: always
+      environment:
+        - POSTGRES_DB=${POSTGRES_DB}
+        - POSTGRES_USER=${POSTGRES_USER}
+        - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      ports:
+        - "5432:5432"
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+        - ./RentNRide.Deployment.Database/Scripts:/docker-entrypoint-initdb.d
 
   rabbitmq:
     image: rabbitmq:3-management

@@ -1,26 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AssemblyName>RentNRide.Deployment.Database</AssemblyName>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="dbup-core" Version="6.0.4" />
-    <PackageReference Include="dbup-postgresql" Version="6.0.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+	<ItemGroup>
+		<PackageReference Include="dbup-core" Version="6.0.4" />
+		<PackageReference Include="dbup-postgresql" Version="6.0.3" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+	</ItemGroup>
 
-    <EmbeddedResource Include="Scripts\*.sql" />
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Scripts\*.sql" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Remove="Scripts\Script 001 - Creating tables.sql" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Dockerfile" />
-    <None Include="Scripts\**\*.sql" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="Dockerfile" />
+	</ItemGroup>
 
 </Project>

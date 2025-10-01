@@ -14,10 +14,10 @@ public class RabbitMqPublisher : IMessagePublisher
     {
         _factory = new ConnectionFactory()
         {
-            HostName = configuration["RabbitMQ:Host"],
-            Port = int.Parse(configuration["RabbitMQ:Port"]),
-            UserName = configuration["RabbitMQ:User"],
-            Password = configuration["RabbitMQ:Pass"]
+            HostName = configuration["RABBITMQ_HOST"],
+            Port = int.Parse(configuration["RABBITMQ_PORT"]),
+            UserName = configuration["RABBITMQ_USER"],
+            Password = configuration["RABBITMQ_PASSWORD"]
         };
     }
 
