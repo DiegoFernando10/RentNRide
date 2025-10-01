@@ -132,7 +132,7 @@ public class RentalService : IRentalService
         // before expected date
         if (finishDate.Date < rental.ExpectedEndDate.Date)
         {
-            var usedDays = (finishDate.Date - rental.StartDate.Date).Days + 1;
+            var usedDays = (finishDate.Date - rental.StartDate.Date).Days;
             if (usedDays < 0) usedDays = 0;
 
             var notUsedDays = plan.DurationInDays - usedDays;
