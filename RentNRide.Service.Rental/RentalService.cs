@@ -40,6 +40,8 @@ public class RentalService : IRentalService
 
     public async Task<RentalResultModel> CreateAsync(RentModel model)
     {
+   
+
         #region Validations
 
         var plan = await unitOfWork
@@ -62,10 +64,21 @@ public class RentalService : IRentalService
         if (!await unitOfWork.MotorcycleRepository.AnyAsync(d => d.MotorcycleId == model.MotorcycleId))
             throw new NotFoundException("Moto não encontrada.");
 
-        #endregion
-
         var startDate = DateTime.UtcNow.AddHours(-3).AddDays(1);
         var expectedEndDate = startDate.AddDays(plan.DurationInDays);
+
+        var overlappingRental = await unitOfWork
+            .RentalRepository
+            .AnyAsync(r => r.MotorcycleId == model.MotorcycleId &&
+                           r.ActualEndDate == null &&
+                           r.StartDate.Date <= startDate.Date &&
+                           r.ExpectedEndDate.Date >= startDate.Date);
+
+        if (overlappingRental)
+            throw new ApiException("Moto já possui uma locação nesse período.");
+
+        #endregion
+
         var baseValue = plan.DailyValue * plan.DurationInDays;
 
         var rental = new Data.Entities.Rent.Rental
