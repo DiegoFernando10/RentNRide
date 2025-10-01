@@ -1,11 +1,15 @@
-﻿using System.Text.RegularExpressions;
+﻿using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace RentNRide.Common.Domain.Models.Motorcycle
 {
     public class MotorcycleCreateModel
     {
+        [JsonProperty("Ano")]
         public int Year { get; set; }
+        [JsonProperty("Modelo")]
         public string Model { get; set; } = null!;
+        [JsonProperty("Placa")]
         public string Plate { get; set; } = null!;
 
         public void FormatData()
