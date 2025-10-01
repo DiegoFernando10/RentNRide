@@ -120,7 +120,7 @@ public class RentalService : IRentalService
 
         var plan = rental.Plan;
 
-        if (rental.StartDate.Date <= finishDate.Date)
+        if (rental.StartDate.Date >= finishDate.Date)
             throw new ApiException("A data de finalização não pode ser menor que data de início.");
 
         #endregion
