@@ -1,2 +1,2 @@
 docker-compose build
-docker-compose up postgresql database-updater rabbitmq minio api
+docker compose --env-file .env up -d --build

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Minio;
 using Minio.DataModel.Args;
 using RentNRide.Common.Domain.Exceptions;
@@ -16,11 +17,14 @@ public class DriverService : IDriverService
 {
     private readonly IUnitOfWork unitOfWork;
     private readonly IMinioClient minioClient;
+    private readonly IConfiguration configuration;
     private readonly string bucketName = "driver-cnh";
 
-    public DriverService(IUnitOfWork unitOfWork)
+    public DriverService(IUnitOfWork unitOfWork, IMinioClient minioClient, IConfiguration configuration)
     {
         this.unitOfWork = unitOfWork;
+        this.minioClient = minioClient;
+        this.configuration = configuration;
     }
 
     public async Task<IEnumerable<DriverModel>> GetAll()
@@ -174,6 +178,9 @@ public class DriverService : IDriverService
                 .WithContentType(extension == ".png" ? "image/png" : "image/bmp"));
         }
 
-        return $"http://localhost:9000/{bucketName}/{objectName}";
+        var minioHost = configuration["Minio:Host"];
+        var minioPort = configuration["Minio:Port"];
+
+        return $"{minioHost}:{minioPort}/{bucketName}/{objectName}";
     }
 }

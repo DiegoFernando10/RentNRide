@@ -1,9 +1,8 @@
-﻿FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+﻿# ===== Build Stage =====
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
-
 COPY . .
 
-# self-contained
 RUN dotnet publish -c Release -r linux-x64 --self-contained true -o /app/publish /p:PublishTrimmed=false
 
 # ===== Runtime Stage =====

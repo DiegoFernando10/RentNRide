@@ -9,10 +9,12 @@ namespace RentNRide.Api.Controller;
 public class MotorcycleController
 {
     private readonly IMotorcycleService motoService;
+    private readonly IMotorcycleRegisteredService registeredService;
 
-    public MotorcycleController(IMotorcycleService motoService)
+    public MotorcycleController(IMotorcycleService motoService, IMotorcycleRegisteredService registeredService)
     {
         this.motoService = motoService;
+        this.registeredService = registeredService;
     }
 
     [HttpGet()]
@@ -43,5 +45,11 @@ public class MotorcycleController
     public async Task Delete(string id)
     {
         await motoService.DeleteAsync(id);
+    }
+
+    [HttpGet("registered")]
+    public async Task<IEnumerable<MotorcycleModel>> GetRegistereds([FromQuery] string plate)
+    {
+        return await registeredService.GetAllAsync(plate);
     }
 }

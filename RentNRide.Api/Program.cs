@@ -28,6 +28,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // ===== Services =====
 builder.Services.AddScoped<IMotorcycleService, MotorcycleService>();
+builder.Services.AddScoped<IMotorcycleRegisteredService, MotorcycleRegisteredService>();
 builder.Services.AddScoped<IDriverService, DriverService>();
 builder.Services.AddScoped<IRentalService, RentalService>();
 builder.Services.AddScoped<IPlanService, PlanService>();
@@ -48,10 +49,17 @@ builder.Services.AddHostedService<MotorcycleConsumer>();
 
 // ===== MinIO =====
 builder.Services.AddSingleton<IMinioClient>(sp =>
-    new MinioClient()
-        .WithEndpoint("localhost:9000")
-        .Build());
+{
+    var host = builder.Configuration["MINIO_HOST"];
+    var port = int.Parse(builder.Configuration["MINIO_PORT"]);
+    var user = builder.Configuration["MINIO_USER"];
+    var password = builder.Configuration["MINIO_PASSWORD"];
 
+    return new MinioClient()
+        .WithEndpoint(host, port)
+        .WithCredentials(user, password)
+        .Build();
+});
 
 // ===== API Versioning =====
 builder.Services.AddApiVersioning(options =>

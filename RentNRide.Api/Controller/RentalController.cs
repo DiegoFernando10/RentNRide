@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RentNRide.Common.Domain.Models.Driver;
 using RentNRide.Common.Domain.Models.Rent;
 using RentNRide.Common.Domain.Services;
-using RentNRide.Service.Driver;
 
 namespace RentNRide.Api.Controller;
 

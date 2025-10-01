@@ -15,6 +15,12 @@ public class DriverController
         this.driverService = driverService;
     }
 
+    [HttpGet]
+    public async Task<IEnumerable<DriverModel>> GetAll()
+    {
+        return await driverService.GetAll();
+    }
+
     [HttpPost]
     public async Task<string> Create([FromBody] DriverCreateModel model)
     {
