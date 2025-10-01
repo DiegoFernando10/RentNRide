@@ -7,14 +7,14 @@ internal class Program
 {
     static int Main(string[] args)
     {
-        Console.WriteLine("Starting DB upgrade (Postgres) - RentNRide");
+        Console.WriteLine("Starting DB upgrade - RentNRide");
 
         Dictionary<string, string>? parameters = null;
-        var host = Environment.GetEnvironmentVariable("POSTGRES_HOST");
-        var port = Environment.GetEnvironmentVariable("POSTGRES_PORT");
-        var dbname = Environment.GetEnvironmentVariable("POSTGRES_DB");
-        var username = Environment.GetEnvironmentVariable("POSTGRES_USER");
-        var password = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD");
+        var host = Environment.GetEnvironmentVariable("POSTGRESQL_HOST");
+        var port = Environment.GetEnvironmentVariable("POSTGRESQL_PORT");
+        var dbname = Environment.GetEnvironmentVariable("POSTGRESQL_DB");
+        var username = Environment.GetEnvironmentVariable("POSTGRESQL_USER");
+        var password = Environment.GetEnvironmentVariable("POSTGRESQL_PASSWORD");
 
         parameters = new Dictionary<string, string>
         {
@@ -35,7 +35,7 @@ internal class Program
 
         var connString = $"Host={hostParam};Port={portParam};Database={dbNameParam};Username={userParam};Password={passParam};";
 
-        Console.WriteLine($"Using Postgres connection: Host={hostParam};Database={dbNameParam};Port={portParam};");
+        Console.WriteLine($"Using db connection: Host={hostParam};Database={dbNameParam};Port={portParam};");
         int retries = 10;
         while (retries > 0)
         {

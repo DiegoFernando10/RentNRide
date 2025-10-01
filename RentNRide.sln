@@ -36,7 +36,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentNRide.Common.Id", "Rent
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentNRide.Common.Validation", "RentNRide.Common.Validation\RentNRide.Common.Validation.csproj", "{10D3A6C0-AE6D-B3B1-6A89-A2AA64D68C0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentNRide.Data.Postgre", "RentNRide.Data.Postgre\RentNRide.Data.Postgre.csproj", "{0700AD2D-4124-5511-8209-37C21EE024C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentNRide.Data.PostgreSql", "RentNRide.Data.Postgre\RentNRide.Data.PostgreSql.csproj", "{0700AD2D-4124-5511-8209-37C21EE024C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentNRide.Service.Rental", "RentNRide.Service.Rental\RentNRide.Service.Rental.csproj", "{BD285C34-F69E-8618-A2B6-852E7B0B63FC}"
 EndProject

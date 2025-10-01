@@ -1,56 +1,65 @@
 ﻿CREATE TABLE IF NOT EXISTS "Driver" (
-    DriverId VARCHAR(6) PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    Cnpj VARCHAR(14) NOT NULL UNIQUE,
-    BirthDate DATE NOT NULL,
-    LicenseNumber VARCHAR(11) NOT NULL UNIQUE,
-    LicenseType INT NOT NULL,
-    LicenseImageUrl TEXT
+    "DriverId" VARCHAR(6) PRIMARY KEY,
+    "Name" VARCHAR(100) NOT NULL,
+    "Cnpj" VARCHAR(14) NOT NULL UNIQUE,
+    "BirthDate" DATE NOT NULL,
+    "LicenseNumber" VARCHAR(11) NOT NULL UNIQUE,
+    "LicenseType" INT NOT NULL,
+    "LicenseImageUrl" TEXT
 );
 -- Idx
-CREATE INDEX IF NOT EXISTS IX_Driver_Cnpj ON "Driver" (Cnpj);
+CREATE INDEX IF NOT EXISTS IX_Driver_Cnpj ON "Driver" ("Cnpj");
 
 CREATE TABLE IF NOT EXISTS "Plan" (
-    PlanId SERIAL PRIMARY KEY,
-    Description VARCHAR(50) NOT NULL,
-    DurationInDays INT NOT NULL,
-    DailyValue NUMERIC(5,2) NOT NULL,
-    FinePercentage NUMERIC(5,2),
-    AditionalDailyValue NUMERIC(5,2)
+    "PlanId" SERIAL PRIMARY KEY,
+    "Description" VARCHAR(50) NOT NULL,
+    "DurationInDays" INT NOT NULL,
+    "DailyValue" NUMERIC(5,2) NOT NULL,
+    "FinePercentage" NUMERIC(5,2),
+    "AditionalDailyValue" NUMERIC(5,2)
 );
 
 CREATE TABLE IF NOT EXISTS "Motorcycle" (
-    MotorcycleId VARCHAR(6) PRIMARY KEY,
-    Year INT NOT NULL,
-    Model VARCHAR(50) NOT NULL,
-    Plate VARCHAR(7) NOT NULL UNIQUE
+    "MotorcycleId" VARCHAR(6) PRIMARY KEY,
+    "Year" INT NOT NULL,
+    "Model" VARCHAR(50) NOT NULL,
+    "Plate" VARCHAR(7) NOT NULL UNIQUE
 );
 -- Idx
-CREATE INDEX IF NOT EXISTS IX_Motorcycle_Plate ON "Motorcycle" (Plate);
+CREATE INDEX IF NOT EXISTS IX_Motorcycle_Plate ON "Motorcycle" ("Plate");
 
 CREATE TABLE IF NOT EXISTS "Rental" (
-    RentalId VARCHAR(6) PRIMARY KEY,
-    StartDate TIMESTAMP NOT NULL,
-    ExpectedEndDate TIMESTAMP NOT NULL,
-    ActualEndDate TIMESTAMP,
-    BaseValue NUMERIC(7,2) NOT NULL,
-    Penalty NUMERIC(5,2),
-    Additional NUMERIC(5,2),
-    TotalCost NUMERIC(7,2) NOT NULL,
+    "RentalId" VARCHAR(6) PRIMARY KEY,
+    "StartDate" TIMESTAMP NOT NULL,
+    "ExpectedEndDate" TIMESTAMP NOT NULL,
+    "ActualEndDate" TIMESTAMP,
+    "BaseValue" NUMERIC(7,2) NOT NULL,
+    "Penalty" NUMERIC(5,2),
+    "Additional" NUMERIC(5,2),
+    "TotalCost" NUMERIC(7,2) NOT NULL,
 
-    MotorcycleId VARCHAR(6) NOT NULL,
-    DriverId VARCHAR(6) NOT NULL,
-    PlanId INT NOT NULL,
+    "MotorcycleId" VARCHAR(6) NOT NULL,
+    "DriverId" VARCHAR(6) NOT NULL,
+    "PlanId" INT NOT NULL,
 
-    CONSTRAINT FK_Rental_Motorcycle FOREIGN KEY (MotorcycleId) REFERENCES "Motorcycle"(MotorcycleId),
-    CONSTRAINT FK_Rental_Driver FOREIGN KEY (DriverId) REFERENCES "Driver"(DriverId),
-    CONSTRAINT FK_Rental_Plan FOREIGN KEY (PlanId) REFERENCES "Plan"(PlanId)
+    CONSTRAINT FK_Rental_Motorcycle FOREIGN KEY ("MotorcycleId") REFERENCES "Motorcycle"("MotorcycleId"),
+    CONSTRAINT FK_Rental_Driver FOREIGN KEY ("DriverId") REFERENCES "Driver"("DriverId"),
+    CONSTRAINT FK_Rental_Plan FOREIGN KEY ("PlanId") REFERENCES "Plan"("PlanId")
 );
 
 CREATE TABLE IF NOT EXISTS "MotorcycleEvent" (
-    MotorcycleEventId VARCHAR(6) PRIMARY KEY,
-    CreatedDatetime TIMESTAMP NOT NULL,
+    "MotorcycleEventId" VARCHAR(6) PRIMARY KEY,
+    "CreatedDatetime" TIMESTAMP NOT NULL,
 
-    MotorcycleId VARCHAR(6) NOT NULL,
-    CONSTRAINT FK_MotorcycleEvent_Motorcycle FOREIGN KEY (MotorcycleId) REFERENCES "Motorcycle"(MotorcycleId)
+    "MotorcycleId" VARCHAR(6) NOT NULL,
+    CONSTRAINT FK_MotorcycleEvent_Motorcycle FOREIGN KEY ("MotorcycleId") REFERENCES "Motorcycle"("MotorcycleId")
 );
+
+INSERT INTO "Plan" 
+    ("Description", "DurationInDays", "DailyValue", "FinePercentage", "AditionalDailyValue")
+VALUES
+    ('Plano 7 dias', 7, 30.00, 20.00, 50.00),
+    ('Plano 15 dias', 15, 28.00, 40.00, 50.00),
+    ('Plano 30 dias', 30, 22.00, NULL, 50.00),
+    ('Plano 45 dias', 45, 20.00, NULL, 50.00),
+    ('Plano 50 dias', 50, 18.00, NULL, 50.00);

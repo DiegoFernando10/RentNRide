@@ -2,7 +2,7 @@
 using RentNRide.Common.Domain.Interfaces;
 using System.Linq.Expressions;
 
-namespace RentNRide.Data.Postgre;
+namespace RentNRide.Data.PostgreSql;
 
 public class GenericRepository<C, T> : IGenericRepository<T> where C : DbContext where T : class
 {

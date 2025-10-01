@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RentNRide.Data.Postgre\RentNRide.Data.Postgre.csproj" />
+    <ProjectReference Include="..\RentNRide.Data.Postgre\RentNRide.Data.PostgreSql.csproj" />
     <ProjectReference Include="..\RentNRide.Listener.MotorcycleConsumer\RentNRide.Listener.MotorcycleConsumer.csproj" />
     <ProjectReference Include="..\RentNRide.Providers.RabbitMqPublisher\RentNRide.Providers.RabbitMqPublisher.csproj" />
     <ProjectReference Include="..\RentNRide.Service.Driver\RentNRide.Service.Driver.csproj" />

@@ -4,7 +4,7 @@ using RentNRide.Data.Entities.Driver;
 using RentNRide.Data.Entities.Motocycle;
 using RentNRide.Data.Entities.Rent;
 
-namespace RentNRide.Data.Postgre;
+namespace RentNRide.Data.PostgreSql;
 
 public class RentNRideDbContext : DbContext
 {

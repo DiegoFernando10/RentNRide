@@ -1,19 +1,18 @@
-using Minio;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.EntityFrameworkCore;
+using Minio;
 using Newtonsoft.Json.Serialization;
 using RentNRide.Common.Domain.Exceptions;
 using RentNRide.Common.Domain.Interfaces;
 using RentNRide.Common.Domain.Services;
 using RentNRide.Data.Entities;
-using RentNRide.Data.Postgre;
+using RentNRide.Data.PostgreSql;
 using RentNRide.Listener.MotorcycleConsumer;
 using RentNRide.Providers.RabbitMqPublisher;
 using RentNRide.Service.Driver;
 using RentNRide.Service.Motorcycle;
-using System.Net;
-using RentNRide.Service.Rental;
 using RentNRide.Service.Plan;
+using RentNRide.Service.Rental;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
