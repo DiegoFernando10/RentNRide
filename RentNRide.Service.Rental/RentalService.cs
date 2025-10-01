@@ -134,7 +134,7 @@ public class RentalService : IRentalService
         {
             var missingDays = (finishDate.Date - rental.StartDate.Date).Days;
 
-            rental.Penalty = missingDays * (plan.FinePercentage ?? 0) / 100;
+            rental.Penalty = missingDays * (rental.TotalCost * plan.FinePercentage ?? 0) / 100;
             rental.TotalCost = rental.BaseValue + rental.Penalty.Value;
         }
         // after expected date
