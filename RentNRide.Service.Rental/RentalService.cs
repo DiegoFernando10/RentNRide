@@ -117,7 +117,7 @@ public class RentalService : IRentalService
         rental.Additional = 0;
 
         // before expected date
-        if (finishDate < rental.ExpectedEndDate)
+        if (finishDate.Date < rental.ExpectedEndDate.Date)
         {
             var usedDays = (finishDate.Date - rental.StartDate).Days;
             if (usedDays < 0) usedDays = 0;
@@ -130,7 +130,7 @@ public class RentalService : IRentalService
             rental.TotalCost = usedValue + rental.Penalty.Value;
         }
         // after expected date
-        else if (finishDate > rental.ExpectedEndDate)
+        else if (finishDate.Date > rental.ExpectedEndDate.Date)
         {
             var extraDays = (finishDate.Date - rental.ExpectedEndDate).Days;
             rental.Additional = extraDays * (plan.AditionalDailyValue ?? 0);

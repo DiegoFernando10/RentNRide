@@ -26,7 +26,7 @@ Criar as imagens Docker
 
 Subir os containers da aplicação (rentnride-container) e dependências (Postgres, RabbitMQ, MinIO)
 
-Disponibilizar a API em http://localhost:6060
+Disponibilizar a API em http://localhost:8080
 
 🌐 Acessando a API
 Após o deploy, você poderá acessar:
@@ -35,7 +35,7 @@ Swagger (documentação interativa):
 
 bash
 Copiar código
-http://localhost:6060/swagger
+http://localhost:8080/swagger
 Exemplo de endpoints disponíveis:
 
 GET /v1/entregadores → Lista entregadores
@@ -63,6 +63,8 @@ RabbitMQ → Porta 5672 (painel de gestão em http://localhost:15672)
 
 MinIO → Porta 9000 (console em http://localhost:9001)
 
+**Ver arquivo .env para obter os logins.**
+
 📦 Estrutura do projeto
 bash
 Copiar código
@@ -82,7 +84,7 @@ Exemplo via curl para listar planos:
 
 bash
 Copiar código
-curl http://localhost:6060/v1/planos
+curl http://localhost:8080/v1/planos
 🧹 Encerrando os containers
 Para parar os containers:
 

@@ -84,7 +84,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "RentNRide API",
         Version = "v1",
-        Description = "Documentação automática das APIs RentNRide"
+        Description = "Documentacao automatica das APIs RentNRide"
     });
 });
 
