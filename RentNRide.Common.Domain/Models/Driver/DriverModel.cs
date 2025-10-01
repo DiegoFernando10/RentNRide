@@ -17,4 +17,6 @@ public class DriverModel
     public string LicenseNumber { get; set; } = null!;
     [JsonProperty("TipoCnh")]
     public LicenseTypeEnum LicenseType { get; set; }
+    [JsonProperty("UrlImagemChn")]
+    public string? LicenseImageUrl { get; set; }
 }
