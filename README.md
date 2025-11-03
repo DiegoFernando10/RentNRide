@@ -68,6 +68,7 @@ MinIO → Porta 9000 (console em http://localhost:9001)
 📦 Estrutura do projeto
 bash
 Copiar código
+
 RentNRide/
 │
 ├── RentNRide.Api/              # Projeto principal da API
@@ -77,6 +78,7 @@ RentNRide/
 ├── RentNRide.Providers/        # Integrações externas (RabbitMQ, MinIO)
 ├── deploy.ps1                  # Script para build e deploy com Docker
 └── docker-compose.yml          # Orquestração dos containers
+
 ✅ Testando a API
 No Swagger, você pode executar chamadas diretamente.
 
